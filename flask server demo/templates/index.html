@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stainless Steel Pipes</title>
+</head>
+<body>
+    <h1 align="center">Use the boxes below to select your pipes</h1>
+    <p align="center">*If you do not know a category you may select N/A*</p>
+
+    {% if error %}
+        <p style="color:red; text-align:center;">{{ error }}</p>
+    {% endif %}
+
+    <h2 align="center">Select Pipe Grade and Attributes</h2>
+    
+    <form action="/query" method="POST">
+        <!-- Step 1: Select Pipe Grade -->
+        <label for="pipe-grade">Select Pipe Grade:</label>
+        <select id="pipe-grade" name="pipe_grade" required>
+            <option value="">-- Select Grade --</option>
+            <option value="tp304">TP304</option>
+            <option value="tp304l">TP304L</option>
+            <option value="tp316">TP316</option>
+            <option value="tp316l">TP316L</option>
+        </select>
+
+        <!-- Step 2: Select DIN Number -->
+        <label for="din-num">DIN Number:</label>
+        <select id="din-num" name="din_num">
+            <option value="">N/A</option>
+            {% for din_num in din_numbers %}
+                <option value="{{ din_num[0] }}">{{ din_num[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Step 3: Select Nominal Pipe Size -->
+        <label for="nominal-pipe-size">Nominal Pipe Size:</label>
+        <select id="nominal-pipe-size" name="nominal_pipe_size">
+            <option value="">N/A</option>
+            {% for size in nominal_pipe_sizes %}
+                <option value="{{ size[0] }}">{{ size[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Step 4: Select MM Size -->
+        <label for="mm-size">MM Size:</label>
+        <select id="mm-size" name="mm_size">
+            <option value="">N/A</option>
+            {% for mm in mm_sizes %}
+                <option value="{{ mm[0] }}">{{ mm[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Step 5: Select Schedule Number -->
+        <label for="schedule-number">Schedule Number:</label>
+        <select id="schedule-number" name="schedule_number">
+            <option value="">N/A</option>
+            {% for schedule in schedule_numbers %}
+                <option value="{{ schedule[0] }}">{{ schedule[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Step 6: Select Wall Thickness (MM) -->
+        <label for="wall-thickness">Wall Thickness (MM):</label>
+        <select id="wall-thickness" name="wall_thickness_mm">
+            <option value="">N/A</option>
+            {% for thickness in wall_thicknesses %}
+                <option value="{{ thickness[0] }}">{{ thickness[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Step 7: Select Design Strength -->
+        <label for="design-strength">Design Strength:</label>
+        <select id="design-strength" name="design_strength">
+            <option value="">N/A</option>
+            {% for strength in design_strengths %}
+                <option value="{{ strength[0] }}">{{ strength[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Step 8: Select MPA -->
+        <label for="mpa">MPA:</label>
+        <select id="mpa" name="mpa">
+            <option value="">N/A</option>
+            {% for mpa in mpa_values %}
+                <option value="{{ mpa[0] }}">{{ mpa[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Step 9: Select PSI -->
+        <label for="psi">PSI:</label>
+        <select id="psi" name="psi">
+            <option value="">N/A</option>
+            {% for psi in psi_values %}
+                <option value="{{ psi[0] }}">{{ psi[0] }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
